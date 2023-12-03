@@ -6,9 +6,10 @@ import com.spdqbr.aoc.Solution;
 
 public class Day02 extends Solution {
 	public static final int day = 2;
+	public static final int year = 2023;
 	
 	public static void main(String[] args) {
-		(new Day02()).main(day, 0);
+		(new Day02()).main(year, day, 0);
 	}
 	
 	public String part1(String[] input) {
