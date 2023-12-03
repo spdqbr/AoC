@@ -8,7 +8,7 @@ public class Template extends Solution { //@@CLASSLINE@@
 	public static final int year = 2023;
 	
 	public static void main(String[] args) {
-		(new Template()).main(year, day, 1); //@@CLASSLINE@@
+		(new Template()).main(year, day, 0); //@@CLASSLINE@@
 	}
 	
 	public String part1(String[] input) {

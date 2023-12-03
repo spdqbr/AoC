@@ -3,9 +3,10 @@ import com.spdqbr.aoc.Solution;
 
 public class Day01 extends Solution {
 	public static final int day = 1;
+	public static final int year = 2023;
 	
 	public static void main(String[] args) {
-		(new Day01()).main(day, 3);
+		(new Day01()).main(year, day, 3);
 	}
 	
 	public int getNumFromString(String s) {

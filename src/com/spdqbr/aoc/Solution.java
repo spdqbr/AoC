@@ -22,7 +22,7 @@ public abstract class Solution {
 
 		String[][] inputs = { example, input, example2, input };
 		
-		for(int i = 0; i < levels.length; i++) {
+		for(int i = 0; i <= level; i++) {
 			execute(i, inputs[i]);
 		}
 	}

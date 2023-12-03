@@ -48,16 +48,16 @@ public class Matrix2D {
 		return matrix[row][col];
 	}
 	
-	public int get(Coord2D coord) {
+	public int get(Coord2D<Integer>  coord) {
 		return get(coord.row, coord.col);
 	}
 	
-	public List<Coord2D> getNeighbors(Coord2D coord, boolean diagonal) {
+	public List<Coord2D<Integer>> getNeighbors(Coord2D<Integer> coord, boolean diagonal) {
 		return getNeighbors(coord.row, coord.col, diagonal);
 	}
 	
-	public List<Coord2D> getNeighbors(int row, int col, boolean diagonal) {
-		List<Coord2D> list = new ArrayList<Coord2D>();
+	public List<Coord2D<Integer> > getNeighbors(int row, int col, boolean diagonal) {
+		List<Coord2D<Integer> > list = new ArrayList<Coord2D<Integer> >();
 		for(int y = -1; y <= 1; y++) {
 			if(row == 0 && y == -1) continue;
 			if(row == height-1 && y == 1) continue;
@@ -86,7 +86,7 @@ public class Matrix2D {
 		return sb.toString();
 	}
 	
-	public int dijkstra(Coord2D start, Coord2D end, boolean diagonal) {
+	public int dijkstra(Coord2D<Integer>  start, Coord2D<Integer>  end, boolean diagonal) {
 		int[][] pathWeights = new int[height][width];
 		boolean[][] visited = new boolean[height][width];
 		for(int i = 0; i < pathWeights.length; i++) {
@@ -96,11 +96,11 @@ public class Matrix2D {
 		pathWeights[start.row][start.col] = 0;
 		visited[start.row][start.col] = true;
 		
-		Coord2D active = start;
-		List<Coord2D> neighbors;
+		Coord2D<Integer>  active = start;
+		List<Coord2D<Integer> > neighbors;
 		while(!visited[end.row][end.col]) {
 			neighbors = getNeighbors(active, diagonal);
-			for(Coord2D n : neighbors) {
+			for(Coord2D<Integer>  n : neighbors) {
 				if(!visited[n.row][n.col]) {
 					int weight = pathWeights[active.row][active.col] + get(n); 
 					if(weight < pathWeights[n.row][n.col]) pathWeights[n.row][n.col] = weight; 
@@ -113,7 +113,7 @@ public class Matrix2D {
 				for(int c = 0; c < width; c++) {
 					if(!visited[r][c] && pathWeights[r][c] < min) {
 						min = pathWeights[r][c];
-						active = new Coord2D(r,c);
+						active = new Coord2D<Integer>(r,c);
 					}
 				}
 			}
@@ -122,15 +122,15 @@ public class Matrix2D {
 		return pathWeights[end.row][end.col];
 	}
 	
-	public int dijkstraPQ(Coord2D start, Coord2D end, boolean diagonal) {
+	public int dijkstraPQ(Coord2D<Integer>  start, Coord2D<Integer>  end, boolean diagonal) {
 		boolean[][] visited = new boolean[height][width];
-		Coord2D[][] cObjs = new Coord2D[height][width];
-		PriorityQueue<Coord2D> pq = new PriorityQueue<>();
+		Coord2D<Integer>[][] cObjs = new Coord2D[height][width];
+		PriorityQueue<Coord2D<Integer>> pq = new PriorityQueue<>();
 		
 		for(int i = 0; i < cObjs.length; i++) {
 			Arrays.fill(visited[i], false);
 			for(int j = 0; j < cObjs[i].length; j++) {
-				cObjs[i][j] = new Coord2D(i,j,Integer.MAX_VALUE);
+				cObjs[i][j] = new Coord2D<Integer>(i,j,Integer.MAX_VALUE);
 				pq.add(cObjs[i][j]);
 			}
 		}
@@ -139,11 +139,11 @@ public class Matrix2D {
 		cObjs[start.row][start.col].val = 0;
 		modify(cObjs[start.row][start.col], pq);
 		
-		Coord2D active = cObjs[start.row][start.col];
-		List<Coord2D> neighbors;
+		Coord2D<Integer> active = cObjs[start.row][start.col];
+		List<Coord2D<Integer>> neighbors;
 		while(cObjs[end.row][end.col].val == Integer.MAX_VALUE) {
 			neighbors = getNeighbors(active, diagonal);
-			for(Coord2D n : neighbors) {
+			for(Coord2D<Integer> n : neighbors) {
 				if(!visited[n.row][n.col]) {
 					int weight = cObjs[active.row][active.col].val + get(n); 
 					if(weight < cObjs[n.row][n.col].val) {
@@ -160,7 +160,7 @@ public class Matrix2D {
 		return cObjs[end.row][end.col].val;
 	}
 	
-	public void modify(Coord2D c, PriorityQueue<Coord2D> pq) {
+	public void modify(Coord2D<Integer> c, PriorityQueue<Coord2D<Integer>> pq) {
 		pq.remove(c);
 		pq.add(c);
 	}

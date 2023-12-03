@@ -647,4 +647,8 @@ public class Utils {
 			out.append(s.charAt(i));
 		return out.toString();
 	}
+	
+	public static boolean isDigit(char c) {
+		return c >= '0' && c <= '9';
+	}
 }

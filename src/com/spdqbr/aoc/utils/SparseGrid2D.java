@@ -29,7 +29,7 @@ public class SparseGrid2D<T> {
 		}
 	}
 	
-	public T get(Coord2D c) {
+	public T get(Coord2D<Long> c) {
 		return get(c.row, c.col);
 	}
 	
@@ -46,7 +46,7 @@ public class SparseGrid2D<T> {
 		return r.get(col);
 	}
 	
-	public void set(Coord2D c, T val) {
+	public void set(Coord2D<Long> c, T val) {
 		set(c.row, c.col, val);
 	}
 	
@@ -54,7 +54,7 @@ public class SparseGrid2D<T> {
 		set(row, col, val, true);
 	}
 	
-	public boolean set(Coord2D c, T val, boolean overwrite) {
+	public boolean set(Coord2D<Long> c, T val, boolean overwrite) {
 		return set(c.row, c.col, val, overwrite);
 	}
 	
@@ -84,12 +84,12 @@ public class SparseGrid2D<T> {
 		}
 	}
 	
-	public boolean isSet(Coord2D c) {
+	public boolean isSet(Coord2D<Long> c) {
 		return isSet(c.row, c.col);
 	}
 	
 	public boolean isSet(long row, long col) {
-		return get(row, col) == null;
+		return get(row, col) != null;
 	}
 	
 	public Map<Long, T> removeRow(long row) {
@@ -109,7 +109,7 @@ public class SparseGrid2D<T> {
 		return out;
 	}
 	
-	public T remove(Coord2D c) {
+	public T remove(Coord2D<Long> c) {
 		return remove(c.row, c.col);
 	}
 	
@@ -122,10 +122,8 @@ public class SparseGrid2D<T> {
 		return null;
 	}
 	
-	public List<T> getNeighbors(Coord2D c) {
-		return getNeighbors(c.row, c.col);
-	}
 	/**
+	 * if includeEmpty == true:
 	 * 012
 	 * 7x3
 	 * 654
@@ -137,18 +135,86 @@ public class SparseGrid2D<T> {
 	 * @param col
 	 * @return
 	 */
-	public List<T> getNeighbors(long row, long col) {
+	public List<T> getNeighborValues(long row, long col, boolean includeEmpty) {
 		List<T> out = new ArrayList<>();
-		out.add(get(row-1,col-1));
-		out.add(get(row-1,col));
-		out.add(get(row-1,col+1));
-		out.add(get(row,col+1));
-		out.add(get(row+1,col+1));
-		out.add(get(row+1,col));
-		out.add(get(row+1,col-1));
-		out.add(get(row,col-1));
+		List<Coord2D<Long>> n = getNeighborCoords(row, col, includeEmpty); 
+		
+		for(Coord2D<Long> c : n) {
+			out.add(get(c));
+		}
 		
 		return out;
+	}
+	
+	public List<T> getNeighborValues(Coord2D<Long> c, boolean includeEmpty) {
+		return getNeighborValues(c.row, c.col, includeEmpty);
+	}
+	
+	public List<T> getNeighborValues(Coord2D<Long> c) {
+		return getNeighborValues(c, false);
+	}
+	
+	/**
+	 * if includeEmpty == true:
+	 * 012
+	 * 7x3
+	 * 654
+	 * 
+	 * corners = even
+	 * edges = odd
+	 * 
+	 * @param row
+	 * @param col
+	 * @return
+	 */
+	public List<Coord2D<Long>> getNeighborCoords(long row, long col, boolean includeEmpty){
+		List<Coord2D<Long>> temp = new ArrayList<>();
+		temp.add(new Coord2D<Long>(row-1,col-1));
+		temp.add(new Coord2D<Long>(row-1,col));
+		temp.add(new Coord2D<Long>(row-1,col+1));
+		temp.add(new Coord2D<Long>(row,col+1));
+		temp.add(new Coord2D<Long>(row+1,col+1));
+		temp.add(new Coord2D<Long>(row+1,col));
+		temp.add(new Coord2D<Long>(row+1,col-1));
+		temp.add(new Coord2D<Long>(row,col-1));
+		
+		if(includeEmpty) return temp;
+		
+		List<Coord2D<Long>> out = new ArrayList<>();
+		for(Coord2D<Long> c : temp) {
+			if(isSet(c)) {
+				out.add(c);
+			}
+		}
+		
+		return out;
+	}
+	
+	public List<Coord2D<Long>> getNeighborCoords(Coord2D<Long> c, boolean includeEmpty){
+		return getNeighborCoords(c.row, c.col, includeEmpty);
+	}
+	
+	public List<Coord2D<Long>> getNeighborCoords(long row, long col){
+		return getNeighborCoords(row, col, false);
+	}
+	
+	public List<Coord2D<Long>> getNeighborCoords(Coord2D<Long> c){
+		return getNeighborCoords(c, false);
+	}
+	
+	
+	public Map<Long, Map<Long, T>> getGrid(){
+		return grid;
+	}
+	
+	public List<Coord2D<Long>> getSetCoords() {
+		List<Coord2D<Long>> coords = new ArrayList<>();
+		for(long row : grid.keySet()) {
+			for(long col : grid.get(row).keySet()) {
+				coords.add(new Coord2D<Long>(row, col));
+			}
+		}
+		return coords;
 	}
 	
 	/**

@@ -1,8 +1,8 @@
 package com.spdqbr.aoc.utils;
 
 public class Pair<S, T> {
-	S left;
-	T right;
+	public S left;
+	public T right;
 	
 	public Pair(S left, T right) {
 		this.left = left;

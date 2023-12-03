@@ -1,15 +1,16 @@
 package com.spdqbr.aoc.utils;
 
-public class Coord2D implements Comparable<Coord2D>{
-	public int row;
-	public int col;
+public class Coord2D<T extends Number> implements Comparable<Coord2D<Number>>{
+	public T row;
+	public T col;
 	public int val;
 	
-	public Coord2D(int row, int col) {
+	public Coord2D(T row, T col) {
 		this.row = row;
 		this.col = col;
 	}
-	public Coord2D(int row, int col, int val) {
+	
+	public Coord2D(T row, T col, int val) {
 		this(row, col);
 		this.val = val;
 	}
@@ -34,11 +35,7 @@ public class Coord2D implements Comparable<Coord2D>{
 	}
 
 	@Override
-	public int compareTo(Coord2D o) {
-		return Integer.compare(val, o.val);
-	}
-	
-	public Coord2D shift(Coord2D vector) {
-		return new Coord2D(this.row + vector.row, this.col + vector.col);
+	public int compareTo(Coord2D<Number> o) {
+		return Integer.compare(this.val, o.val);
 	}
 }
