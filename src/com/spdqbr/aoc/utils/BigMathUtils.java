@@ -229,4 +229,18 @@ public class BigMathUtils extends MathUtils{
     public static BigInteger incrementRepUnit(BigInteger repUnit){
     	return repUnit.multiply(BigInteger.TEN).add(BigInteger.ONE);
     }
+    
+    public static BigInteger min(BigInteger a, BigInteger b) {
+    	if(a == null && b == null) return null;
+    	if(a == null) return b;
+    	if(b == null) return a;
+    	return a.compareTo(b) < 0 ? a : b;
+    }
+    
+    public static BigInteger max(BigInteger a, BigInteger b) {
+    	if(a == null && b == null) return null;
+    	if(a == null) return b;
+    	if(b == null) return a;
+    	return a.compareTo(b) > 0 ? a : b;
+    }
 }

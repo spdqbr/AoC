@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.zip.ZipEntry;
@@ -586,6 +587,30 @@ public class Utils {
 
 	public static int[] xorCrypt(String key, int[] cipher) {
 		return xorCrypt(key.toCharArray(), intArrayToString(cipher));
+	}
+	
+	public static int[] stringArraytoIntArray(String[] a) {
+		int[] out = new int[a.length];
+		for(int i = 0 ; i < a.length; i++) {
+			out[i] = Integer.parseInt(a[i]);
+		}
+		return out;
+	}
+	
+	public static long[] stringArraytoLongArray(String[] a) {
+		long[] out = new long[a.length];
+		for(int i = 0 ; i < a.length; i++) {
+			out[i] = Long.parseLong(a[i]);
+		}
+		return out;
+	}
+	
+	public static BigInteger[] stringArraytoBigIntegerArray(String[] a) {
+		BigInteger[] out = new BigInteger[a.length];
+		for(int i = 0 ; i < a.length; i++) {
+			out[i] = new BigInteger(a[i]);
+		}
+		return out;
 	}
 
 	public static int[] charSeqToIntArray(CharSequence seq) {
