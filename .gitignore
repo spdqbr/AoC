@@ -3,3 +3,4 @@ bin/
 .project
 .settings/
 Input/*/*
+src/com/spdqbr/aoc/Test.java
