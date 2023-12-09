@@ -536,7 +536,7 @@ public class Utils {
 	 * 
 	 * For example key = key = {107,101,121} repeated key = keykey =
 	 * {107,101,121,107,101,121} text = secret = {115,101, 99,114,101,116} rkey
-	 * xor text= ??? = { 24, 0, 26, 25, 0, 13}
+	 * xor text= ????? = { 24, 0, 26, 25, 0, 13}
 	 * 
 	 * Since xor is symmetric, if this method can be used to decipher text which
 	 * has been enciphered with this method if the key is known
@@ -570,7 +570,7 @@ public class Utils {
 	 * are xored and returned as a String.
 	 * 
 	 * For example key = key = {107,101,121} repeated key = keykey =
-	 * {107,101,121,107,101,121} cipher = ??? = { 24, 0, 26, 25, 0, 13} rkey
+	 * {107,101,121,107,101,121} cipher = ????? = { 24, 0, 26, 25, 0, 13} rkey
 	 * xor text= secret = {115,101, 99,114,101,116}
 	 * 
 	 * This can also be used to encipher an int array with a given key
@@ -671,6 +671,23 @@ public class Utils {
 		for (int i = s.length() - 1; i >= 0; i--)
 			out.append(s.charAt(i));
 		return out.toString();
+	}
+	
+	
+	public static long[] reverse(long[] arr) {
+		long[] rev = new long[arr.length];
+		for(int i =0; i < rev.length; i++) {
+			rev[i] = arr[arr.length-1-i];
+		}
+		return rev;
+	}
+	
+	public static int[] reverse(int[] arr) {
+		int[] rev = new int[arr.length];
+		for(int i =0; i < rev.length; i++) {
+			rev[i] = arr[arr.length-1-i];
+		}
+		return rev;
 	}
 	
 	public static boolean isDigit(char c) {
