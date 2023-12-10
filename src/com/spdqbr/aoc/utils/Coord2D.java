@@ -22,9 +22,9 @@ public class Coord2D<T extends Number> implements Comparable<Coord2D<Number>>{
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Coord2D) {
-			Coord2D other = (Coord2D)obj;
-			return this.row == other.row && this.col == other.col;
+		if(obj instanceof Coord2D<?>) {
+			Coord2D<T> other = (Coord2D)obj;
+			return this.row.equals(other.row) && this.col.equals(other.col);
 		}
 		return false;
 	}
