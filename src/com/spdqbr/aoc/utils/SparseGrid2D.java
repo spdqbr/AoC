@@ -217,6 +217,38 @@ public class SparseGrid2D<T> {
 		return coords;
 	}
 	
+	public void printGrid() {
+		printGrid(1, '.');
+	}
+	
+	public void printGrid(int trimPad) {
+		printGrid(trimPad, '.');
+	}
+	
+	public void printGrid(char emptyChar) {
+		printGrid(1, emptyChar);
+	}
+	
+	public void printGrid(int trimPad, char emptyChar) {
+		long[] bounds = this.getBounds();
+		String s;
+		String emptyString = Utils.cPad(""+emptyChar, trimPad);
+		for(long row = bounds[0]; row <= bounds[1]; row++) {
+			for(long col = bounds[2]; col <= bounds[3]; col++) {
+				T i = this.get(row, col);
+				if(i == null) {
+					System.out.print(emptyString);
+				}else {
+					s = i.toString();
+					if(s.length() > trimPad) s = s.substring(0, trimPad);
+					else s = Utils.cPad(s, trimPad);
+					System.out.print(s);
+				}
+			}
+			System.out.println();
+		}
+	}
+	
 	/**
 	 * 
 	 * @return { minRow, maxRow, minCol, maxCol }
