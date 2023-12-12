@@ -4,6 +4,19 @@ import static com.spdqbr.aoc.utils.Utils.readFileToArray;
 public abstract class Solution {
 	public static String[] levels = { "1e", "1", "2e", "2" };
 	
+	public static boolean DEBUG = false;
+	
+	public void debug(Object... s) {
+		if(DEBUG) {
+			System.out.print(s[0]);
+			for(int i = 1; i < s.length; i++) {
+				System.out.print(" | ");
+				System.out.print(s[i]);
+			}
+			System.out.println();
+		}
+	}
+	
 	public void main(int year, int day) {
 		main(year, day, 4);
 	}
@@ -22,9 +35,7 @@ public abstract class Solution {
 
 		String[][] inputs = { example, input, example2, input };
 		
-		for(int i = 0; i <= level; i++) {
-			execute(i, inputs[i]);
-		}
+		execute(level, inputs[level]);
 	}
 
 	public void execute(int level, String[] input) {

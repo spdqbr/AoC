@@ -693,4 +693,16 @@ public class Utils {
 	public static boolean isDigit(char c) {
 		return c >= '0' && c <= '9';
 	}
+	
+	public static boolean substringMatches(String a, int aStart, String b, int bStart) {
+		return substringMatches(a, aStart, b, bStart, Math.min(a.length()-aStart, b.length()-bStart));
+	}
+	
+	public static boolean substringMatches(String a, int aStart, String b, int bStart, int length) {
+		if(aStart + length > a.length() || bStart + length > b.length()) return false;
+		for(int i = 0; i < length; i++) {
+			if(a.charAt(i+aStart) != b.charAt(i+bStart)) return false;
+		}
+		return true;
+	}
 }
