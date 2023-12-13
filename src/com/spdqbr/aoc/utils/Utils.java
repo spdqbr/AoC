@@ -705,4 +705,49 @@ public class Utils {
 		}
 		return true;
 	}
+	
+	public static boolean arrEquals(Object[] a, Object[] b) {
+		if( (a == null || b == null) && a != b) return false;
+		if(a.length != b.length) return false;
+		for(int i = 0; i < a.length; i++) {
+			if(! a[i].equals(b[i])) return false;
+		}
+		return true;
+	}
+	
+	public static boolean arrEquals(char[] a, char[] b) {
+		if( (a == null || b == null) && a != b) return false;
+		if(a.length != b.length) return false;
+		for(int i = 0; i < a.length; i++) {
+			if(a[i] != b[i]) return false;
+		}
+		return true;
+	}
+	
+	public static boolean arrEquals(long[] a, long[] b) {
+		if( (a == null || b == null) && a != b) return false;
+		if(a.length != b.length) return false;
+		for(int i = 0; i < a.length; i++) {
+			if(a[i] != b[i]) return false;
+		}
+		return true;
+	}
+	
+	public static boolean arrEquals(boolean[] a, boolean[] b) {
+		if( (a == null || b == null) && a != b) return false;
+		if(a.length != b.length) return false;
+		for(int i = 0; i < a.length; i++) {
+			if(a[i] != b[i]) return false;
+		}
+		return true;
+	}
+	
+	public static boolean arrEquals(int[] a, int[] b) {
+		if( (a == null || b == null) && a != b) return false;
+		if(a.length != b.length) return false;
+		for(int i = 0; i < a.length; i++) {
+			if(a[i] != b[i]) return false;
+		}
+		return true;
+	}
 }
