@@ -5,7 +5,7 @@ import com.spdqbr.aoc.Solution;
 
 public class Template extends Solution { //@@CLASSLINE@@
 	public static final int day = -1; //@@DAYLINE@@
-	public static final int year = 2023;
+	public static final int year = 2024;
 	
 	public static void main(String[] args) {
 //		DEBUG = true;

@@ -29,8 +29,16 @@ public class SparseGrid2D<T> {
 		}
 	}
 	
+	public T getInt(Coord2D<Integer> c) {
+		return get(new Coord2D<Long>(c.row.longValue(), c.col.longValue()));
+	}
+	
 	public T get(Coord2D<Long> c) {
 		return get(c.row, c.col);
+	}
+	
+	public T get(int row, int col) {
+		return get((long) row, (long) col);
 	}
 	
 	public T get(long row, long col) {
@@ -46,16 +54,36 @@ public class SparseGrid2D<T> {
 		return r.get(col);
 	}
 	
+	public void putInt(Coord2D<Integer> c, T val) {
+		set(new Coord2D<Long>(c.row.longValue(), c.col.longValue()), val);
+	}
+	
+	public void put(Coord2D<Long> c, T val) {
+		set(c, val);
+	}
+	
 	public void set(Coord2D<Long> c, T val) {
 		set(c.row, c.col, val);
+	}
+	
+	public void put(long row, long col, T val) {
+		set(row, col, val, true);
 	}
 	
 	public void set(long row, long col, T val) {
 		set(row, col, val, true);
 	}
 	
+	public boolean put(Coord2D<Long> c, T val, boolean overwrite) {
+		return set(c.row, c.col, val, overwrite);
+	}
+	
 	public boolean set(Coord2D<Long> c, T val, boolean overwrite) {
 		return set(c.row, c.col, val, overwrite);
+	}
+	
+	public boolean put(long row, long col, T val, boolean overwrite) {
+		return set(row, col, val, overwrite);
 	}
 	
 	public boolean set(long row, long col, T val, boolean overwrite) {

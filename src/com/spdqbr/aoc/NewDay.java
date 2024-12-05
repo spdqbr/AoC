@@ -9,7 +9,7 @@ import java.io.FileWriter;
 public class NewDay {
 	public static void main(String[] args) throws Exception{
 		int day = 1;
-		int year = 2023;
+		int year = 2024;
 		
 		String dayNum = String.format("%02d", day);
 		

@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -593,6 +594,14 @@ public class Utils {
 		int[] out = new int[a.length];
 		for(int i = 0 ; i < a.length; i++) {
 			out[i] = Integer.parseInt(a[i]);
+		}
+		return out;
+	}
+	
+	public static List<Integer> stringArraytoIntegerList(String[] a) {
+		List<Integer> out = new ArrayList<>(a.length);
+		for(int i = 0 ; i < a.length; i++) {
+			out.add(Integer.parseInt(a[i]));
 		}
 		return out;
 	}
