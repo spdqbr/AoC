@@ -1,5 +1,7 @@
 package com.spdqbr.aoc.utils;
 
+import java.util.Objects;
+
 public class Pair<S, T> {
 	public S left;
 	public T right;
@@ -10,16 +12,21 @@ public class Pair<S, T> {
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Pair) {
-			Pair other = (Pair)obj;
-			boolean leq = (this.left == other.left) || (this.left != null && this.left.equals(other.left));
-			boolean req = (this.right == other.right) || (this.right != null && this.right.equals(other.right));
-			
-			return leq && req;
+	public int hashCode() {
+		return Objects.hash(left, right);
+	}
 
-		}
-		return false;
+	@Override
+	@SuppressWarnings("rawtypes")
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pair other = (Pair) obj;
+		return Objects.equals(left, other.left) && Objects.equals(right, other.right);
 	}
 	
 	@Override
