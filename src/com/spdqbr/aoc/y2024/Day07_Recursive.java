@@ -1,9 +1,5 @@
 package com.spdqbr.aoc.y2024;
-import java.util.Arrays;
-import java.util.List;
-
 import com.spdqbr.aoc.Solution;
-import com.spdqbr.aoc.utils.NCounter;
 import com.spdqbr.aoc.utils.Utils;
 
 public class Day07_Recursive extends Solution {
