@@ -22,7 +22,10 @@ public class Matrix2D {
 	}
 	
 	public Matrix2D(String matrix) {
-		String[] lines = matrix.trim().split("\n");
+		this(matrix.trim().split("\n"));
+	}
+	
+	public Matrix2D(String[] lines) {
 		String[] vals;
 		this.matrix = new int[lines.length][];
 		for(int i = 0; i < lines.length; i++) {
@@ -66,7 +69,7 @@ public class Matrix2D {
 				if(col == width-1 && x == 1) continue;
 				if(x == 0 && y == 0) continue;
 				if(diagonal || (x == 0 || y == 0)) {
-					list.add(new Coord2D(row+y, col+x));	
+					list.add(new Coord2D(row+y, col+x, matrix[row][col]));	
 				}
 			}
 		}
