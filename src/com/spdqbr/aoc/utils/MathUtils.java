@@ -229,7 +229,27 @@ public class MathUtils extends Utils{
 		return b==0?a:gcd(b,a%b);
 	}
 	
-
+	public static Triple<Long, Long, Long> extendedGCD(long a, long b){
+		long x = 0, y = 1, lastx = 1, lasty = 0, temp;
+        while (b != 0)
+        {
+            long q = a / b;
+            long r = a % b;
+  
+            a = b;
+            b = r;
+  
+            temp = x;
+            x = lastx - q * x;
+            lastx = temp;
+  
+            temp = y;
+            y = lasty - q * y;
+            lasty = temp;            
+        }
+        return new Triple<Long, Long, Long>(a, lastx, lasty);
+	}
+	
 	/**
 	 * Returns the least common multiple of two integers
 	 * @param a the first integer
