@@ -888,4 +888,14 @@ public class MathUtils extends Utils{
 	public static long distance(long a, long b) {
 		return Math.abs(a-b);
 	}
+	
+	public static long mod(long a, long b) {
+		if(a >=0) return a%b;
+		return a%b + b;
+	}
+	
+	public static int mod(int a, int b) {
+		if(a >=0) return a%b;
+		return a%b + b;
+	}
 }

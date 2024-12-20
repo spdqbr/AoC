@@ -55,6 +55,14 @@ public class Matrix2D {
 		return get(coord.row, coord.col);
 	}
 	
+	public void set(int row, int col, int value) {
+		this.matrix[row][col] = value;
+	}
+	
+	public void set(Coord2D<Integer>  coord, int value) {
+		set(coord.row, coord.col, value);
+	}
+	
 	public List<Coord2D<Integer>> getNeighbors(Coord2D<Integer> coord, boolean diagonal) {
 		return getNeighbors(coord.row, coord.col, diagonal);
 	}
