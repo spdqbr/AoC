@@ -43,48 +43,22 @@ public class Day03 extends Solution {
 		return ""+sum;
 	}
 	
-	public Map<String, Long> memo = new HashMap<>();
-	
 	public long findMax(String input, int minIndex, int batteries) {
-		String key = input+"."+minIndex+"."+batteries;
-		if(memo.containsKey(key)) {
-			return memo.get(key);
+		if(batteries == 0) {
+			return 0;
 		}
-		if(batteries == 1) {
-			int max = -1;
-			int val;
-			for(int i = minIndex; i < input.length(); i++) {
-				val = input.charAt(i) - '0';
-				if(val > max) max = val; 
+		int indexOfNextBiggest = -1;
+		for(int i = 9; indexOfNextBiggest == -1 && i > 0; i--) {
+			for(int j = minIndex; j <= input.length()-batteries; j++) {
+				if(input.charAt(j)-'0' == i) {
+					indexOfNextBiggest = j;
+					break;
+				}
 			}
-			debug(max);
-			return max;
 		}
 		
-		long max = -1;
-		long charMax = -1;
-		long val;
-		long subMax = -1;
-		for(int i = minIndex; i <= input.length()-batteries; i ++) {
-			val = input.charAt(i) - '0';
-			if( val < charMax) {
-				continue;
-			}
-			charMax = val;
-			val *= (long)Math.pow(10, batteries-1);
-			debug(val);
-			if(subMax == -1) {
-				subMax = findMax(input, i+1, batteries-1);
-			}
-			val += findMax(input, i+1, batteries -1);
-			debug(val);
-			
-			if(val > max) {
-				max = val;
-			}
-		}
-		memo.put(key, max);
-		return max;
+		long value = (long)((input.charAt(indexOfNextBiggest)-'0')*Math.pow(10, batteries-1));
+		return value + findMax(input, indexOfNextBiggest+1, batteries-1);
 	}
 	
 	public String part1(String[] input) {
