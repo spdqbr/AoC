@@ -2,6 +2,7 @@ package com.spdqbr.aoc.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -283,5 +284,17 @@ public class SparseGrid2D<T> {
 	 */
 	public long[] getBounds() {
 		return new long[] {minRow, maxRow, minCol, maxCol};
+	}
+	
+	public Long[] getRowIndexes(){
+		Long[] out = new Long[grid.size()];
+		grid.keySet().toArray(out);
+		return out;
+	}
+	
+	public Long[] getColIndexes(long row) {
+		Long[] out = new Long[grid.get(row).size()];
+		grid.get(row).keySet().toArray(out);
+		return out;
 	}
 }
