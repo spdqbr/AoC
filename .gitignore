@@ -4,3 +4,6 @@ bin/
 .settings/
 Input/*/*
 src/com/spdqbr/aoc/Test.java
+python/**/Vars.py
+python/**/Test.py
+**/__pycache__/
