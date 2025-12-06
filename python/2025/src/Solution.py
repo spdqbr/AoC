@@ -50,5 +50,5 @@ class Solution:
         
         all_data: list[list[str]] = [example_data, data, example_data_2, data]
         
-        for i in range(1, 5):
+        for i in range(1, part + 1):
             self.run(i, self.part_1 if i < 3 else self.part_2, all_data[i - 1])
