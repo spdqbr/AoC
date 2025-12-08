@@ -66,7 +66,6 @@ public class Day08 extends Solution {
 		
 		long[] a, b;
 		Set<long[]> connectionA, connectionB;
-		int connectionCount = 0;
 		for(int i = 0; i < maxConnections; i++) {
 			a = distances.get(i).item1;
 			b = distances.get(i).item2;
@@ -83,7 +82,6 @@ public class Day08 extends Solution {
 				connectionA.addAll(connectionB);
 				connectionB.clear();
 				connections.remove(connectionB);
-				connectionCount++;
 			}
 		}
 		
